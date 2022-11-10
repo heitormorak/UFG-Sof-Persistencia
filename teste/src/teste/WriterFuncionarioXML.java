@@ -1,9 +1,8 @@
 package teste;
 
-import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,19 +56,20 @@ public class WriterFuncionarioXML {
 		funcionario.setHabilidades(habilidades);
 		
 		try {
-			//cria xml
+			//usando xstream 
 			XStream xstream = new XStream();
-						
-			//cria o arquivo json de nome `cpf`
-			//BufferedWriter writer = Files.newBufferedWriter(Paths.get(cpf + ".json"));
 			
-			//converte para json
-			//objGson.toJson(funcionario, writer);
-			
+			//gerando xml
 			String xmlGerado = xstream.toXML(funcionario);
-			//System.out.println(xmlGerado);
 			
-			writer.close();			
+			//cria arquivo cpf.xml
+			FileOutputStream arquivo = new FileOutputStream(cpf + ".xml");
+	        DataOutputStream gravarArq = new DataOutputStream(arquivo);    	
+	        
+	        //escreve no arquivo
+	        gravarArq.writeUTF(xmlGerado);
+	        
+	        gravarArq.close();   		
 			
 		} catch (Exception e) {
 			  System.out.print("" + e);
