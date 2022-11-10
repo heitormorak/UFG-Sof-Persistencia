@@ -1,7 +1,6 @@
 package teste;
 
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +41,7 @@ public class WriterFuncionarioXML {
 		  
 		  if (answer.equals("n")){ 
 			  System.out.println(answer); 
-			  break; // 
+			  break; 
 		  } 
         }
 	         
@@ -57,19 +56,16 @@ public class WriterFuncionarioXML {
 		
 		try {
 			//usando xstream 
-			XStream xstream = new XStream();
+			XStream xstream = new XStream();						
+			xstream.alias("Funcionario", Funcionario.class);
 			
-			//gerando xml
-			String xmlGerado = xstream.toXML(funcionario);
+			//cria o arquivo com o cpf informado
+			FileWriter file = new FileWriter(cpf + ".xml", true);
 			
-			//cria arquivo cpf.xml
-			FileOutputStream arquivo = new FileOutputStream(cpf + ".xml");
-	        DataOutputStream gravarArq = new DataOutputStream(arquivo);    	
-	        
-	        //escreve no arquivo
-	        gravarArq.writeUTF(xmlGerado);
-	        
-	        gravarArq.close();   		
+			//grava a classe convertida para xml
+			file.write(xstream.toXML(funcionario));
+			file.close();
+				
 			
 		} catch (Exception e) {
 			  System.out.print("" + e);

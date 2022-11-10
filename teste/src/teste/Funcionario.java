@@ -2,6 +2,8 @@ package teste;
 
 import java.util.ArrayList;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 public class Funcionario {
 	
 	String cpf;
