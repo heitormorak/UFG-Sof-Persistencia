@@ -2,6 +2,7 @@ package teste;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,13 +19,12 @@ public class ReaderFuncionarioXML {
 		
 		try {
 			
+			FileReader file = new FileReader (new File (nomeArq + ".xml"));			
 			XStream xstream = new XStream(new DomDriver());
-			File file = new File (nomeArq + ".xml");
-			FileInputStream input = new FileInputStream(file);
-			
+						
 			xstream.alias("Funcionario", Funcionario.class);
 			
-			Funcionario xml = (Funcionario) xstream.fromXML(input);			
+			Funcionario xml = (Funcionario) xstream.fromXML(file);			
 					
 			System.out.println("Dados do objeto originados do JSON:");
 			System.out.println ("CPF: "+ xml.getCpf());
