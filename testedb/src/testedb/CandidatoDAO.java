@@ -1,5 +1,3 @@
-package testedb;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +20,7 @@ public class CandidatoDAO {
 			instrucao.setInt(1, can.getCodigo());
 			instrucao.setString(2, can.getNome());
 			instrucao.setString(3, can.getSexo());
-			instrucao.setDate(4, can.getData_nasc());
+			instrucao.setString(4, can.getData_nasc());
 			instrucao.setString(5, can.getCargo_pretendido());
 			instrucao.setString(6, can.getTexto_curriculo());
 		} catch (SQLException e) {
@@ -41,7 +39,7 @@ public class CandidatoDAO {
 				Candidato c = new Candidato(resultado.getInt("codigo"),
 											resultado.getString("nome"),
 											resultado.getString("sexo"),
-											resultado.getDate("data_nasc"),
+											resultado.getString("data_nasc"),
 											resultado.getString("cargo_pretendido"),
 											resultado.getString("texto_curriculo"));
 				listaDeCandidatos.add(c);

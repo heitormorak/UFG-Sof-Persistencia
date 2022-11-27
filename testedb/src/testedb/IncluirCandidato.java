@@ -1,5 +1,3 @@
-package testedb;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -10,7 +8,7 @@ public class IncluirCandidato {
 		int codigo;
 		String nome, cargo_pretendido, texto_curriculo;
 		String sexo;
-		Date data_nasc;
+		String data_nasc;
 		
 		System.out.println("Digite o codigo do candidato: ");
 		codigo = reader.nextInt();
@@ -19,7 +17,7 @@ public class IncluirCandidato {
 		System.out.println("Digite o sexo do candidato: ");
 		sexo = reader.next();
 		System.out.println("Digite a data de nascimento do candidato: ");
-		data_nasc = reader.nextDate();
+		data_nasc = reader.nextLine();
 		System.out.println("Digite o cargo pretendido do candidato: ");
 		cargo_pretendido = reader.nextLine();
 		System.out.println("Digite o nometexto do currículo do candidato: ");

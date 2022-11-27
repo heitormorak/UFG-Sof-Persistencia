@@ -1,4 +1,3 @@
-package testedb;
 
 import java.sql.Date;
 
@@ -7,15 +6,15 @@ public class Candidato {
 	private int codigo;
 	private String nome;
 	private String sexo;
-	private Date data_nasc;
+	private String data_nasc;
 	private String cargo_pretendido;
 	private String texto_curriculo;
 	
-	public Candidato(int codigo, String nome, String sexo, Date data_nasc, String cargo_pretendido, String texto_curriculo) {
+	public Candidato(int codigo, String nome, String sexo, String date, String cargo_pretendido, String texto_curriculo) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.sexo = sexo;
-		this.data_nasc = data_nasc;
+		this.data_nasc = date;
 		this.cargo_pretendido = cargo_pretendido;
 		this.texto_curriculo = texto_curriculo;
 		
@@ -39,10 +38,10 @@ public class Candidato {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Date getData_nasc() {
+	public String getData_nasc() {
 		return data_nasc;
 	}
-	public void setData_nasc(Date data_nasc) {
+	public void setData_nasc(String data_nasc) {
 		this.data_nasc = data_nasc;
 	}
 	public String getCargo_pretendido() {
