@@ -16,15 +16,17 @@ public class CandidatoDAO {
 	public void criar(Candidato can) {
 		String sql = "INSERT INTO candidato(codigo, nome, sexo, data_nasc, cargo_pretendido, texto_curriculo) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
-			PreparedStatement instrucao = conexao.prepareStatement(sql);
+			PreparedStatement instrucao = this.conexao.prepareStatement(sql);
 			instrucao.setInt(1, can.getCodigo());
 			instrucao.setString(2, can.getNome());
 			instrucao.setString(3, can.getSexo());
 			instrucao.setString(4, can.getData_nasc());
 			instrucao.setString(5, can.getCargo_pretendido());
 			instrucao.setString(6, can.getTexto_curriculo());
+			instrucao.execute();
 		} catch (SQLException e) {
 			System.err.println("Erro durante a inserção dos dados");
+			e.printStackTrace();
 		}
 	}
 	
@@ -32,7 +34,7 @@ public class CandidatoDAO {
 		List<Candidato> listaDeCandidatos = new ArrayList<Candidato>();
 		String sql = "SELECT * FROM candidato ";
 		try {
-			PreparedStatement instrucao = conexao.prepareStatement(sql);
+			PreparedStatement instrucao = this.conexao.prepareStatement(sql);
 			ResultSet resultado = instrucao.executeQuery();
 			
 			while(resultado.next()) {
@@ -46,6 +48,7 @@ public class CandidatoDAO {
 			}
 		} catch(SQLException e) {
 			System.err.println("Erro durante a consulta dos dados");
+			e.printStackTrace();
 		}
 		return listaDeCandidatos;
 	}
