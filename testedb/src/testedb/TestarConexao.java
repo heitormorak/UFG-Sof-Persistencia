@@ -13,12 +13,14 @@ public class TestarConexao {
 		
 		IncluirCandidato novoCandidato = new IncluirCandidato();
 		
-		CandidatoDAO dao = new CandidatoDAO();
+		novoCandidato.incluir();
 		
-		List<Candidato> candidatos = dao.listar();
-		for(Candidato can : candidatos) {
-			System.out.println(can.getNome());
-		}
+		//CandidatoDAO dao = new CandidatoDAO();
+		
+		//List<Candidato> candidatos = dao.listar();
+		//for(Candidato can : candidatos) {
+		//	System.out.println(can.getNome());
+		//}
 		
 	}
 

@@ -14,7 +14,7 @@ public class CandidatoDAO {
 	}
 	
 	public void criar(Candidato can) {
-		String sql = "INSERT INTO candidato(codigo, nome, sexo, data_nasc, cargo_pretendido, texto_curriculo) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO candidato(codigo, nome, sexo, data_nasc, cargo_pretendido, texto_curriculo) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement instrucao = conexao.prepareStatement(sql);
 			instrucao.setInt(1, can.getCodigo());
@@ -30,7 +30,7 @@ public class CandidatoDAO {
 	
 	public List<Candidato> listar() {
 		List<Candidato> listaDeCandidatos = new ArrayList<Candidato>();
-		String sql = "SELECT nome, sexo, data_nac, cargo_pretendido, texto_curriculo FROM candidato ";
+		String sql = "SELECT * FROM candidato ";
 		try {
 			PreparedStatement instrucao = conexao.prepareStatement(sql);
 			ResultSet resultado = instrucao.executeQuery();
