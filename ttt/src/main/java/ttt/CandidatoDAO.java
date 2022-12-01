@@ -1,13 +1,12 @@
 package ttt;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Candidato;
 
 public class CandidatoDAO {
 	private Connection con;
@@ -53,8 +52,9 @@ public class CandidatoDAO {
 	public void atualizar(Candidato can) {
 		try {
 			String sql = "UPDATE curso "
-					+ " SET nome = ?, tipo = ?, valor = ? "
-					+ " WHERE numero = ?";
+					+ " SET codigo = ?, nome = ?, sexo = ? "
+					+ " SET data_nasc = ?, cargo_pretendido = ?, texto_curriculo = ? "
+					+ " WHERE codigo = ?";
 			PreparedStatement instrucao = this.con.prepareStatement(sql);
 			instrucao.setInt(1, can.getCodigo());
 			instrucao.setString(2, can.getNome());
@@ -71,20 +71,23 @@ public class CandidatoDAO {
 	
 	
 	
-	public Curso obterCurso(int numero) {
+	public Candidato obterCandidato(int codigo) {
 		try {
-			String sql = "SELECT nome, tipo, valor FROM curso WHERE numero = ?";
+			String sql = "SELECT * FROM curso WHERE codigo = ?";
 			PreparedStatement instrucao = this.con.prepareStatement(sql);
-			instrucao.setInt(1, numero);
+			instrucao.setInt(1, codigo);
 
 			ResultSet rs = instrucao.executeQuery();
 			if (rs.next()) {
-				Curso curso = new Curso(numero, 
+				Candidato candidato = new Candidato( 
+						rs.getInt("codigo"),
 						rs.getString("nome"),
-						rs.getString("tipo"),
-						rs.getFloat("valor")
+						rs.getString("sexo"),
+						rs.getString("data_nasc"),
+						rs.getString("cargo_pretendido"),
+						rs.getString("texto_curriculo")
 						);
-				return curso;
+				return candidato;
 			}
 			
 		} catch (SQLException e) {
@@ -93,22 +96,24 @@ public class CandidatoDAO {
 		return null;
 	}
 	
-	public List<Curso> obterCursos(){
+	public List<Candidato> listar(){
 		try {
-			List<Curso> lista = new ArrayList<Curso>();
+			List<Candidato> listaDeCandidatos = new ArrayList<Candidato>();
+			String sql = "SELECT * FROM candidato ";
 			
-			String sql = "SELECT numero, nome, tipo, valor FROM curso";
 			PreparedStatement instrucao = this.con.prepareStatement(sql);
-			ResultSet rs = instrucao.executeQuery();
-			while (rs.next()) {
-				Curso curso = new Curso(rs.getInt("numero"), 
-						rs.getString("nome"),
-						rs.getString("tipo"),
-						rs.getFloat("valor")
-						);
-				lista.add(curso);
+			ResultSet resultado = instrucao.executeQuery();
+			
+			while (resultado.next()) {
+				Candidato c = new Candidato(resultado.getInt("codigo"),
+						resultado.getString("nome"),
+						resultado.getString("sexo"),
+						resultado.getString("data_nasc"),
+						resultado.getString("cargo_pretendido"),
+						resultado.getString("texto_curriculo"));
+						listaDeCandidatos.add(c);
 			}
-			return lista;
+			return listaDeCandidatos;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
