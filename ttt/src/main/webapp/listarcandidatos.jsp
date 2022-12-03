@@ -39,5 +39,9 @@
 			</tr>
 		<% } %>
 	</table>
+	
+	<br> <br>
+	
+	<a href="index.html">Voltar ao menu</a>
 </body>
 </html>
