@@ -25,7 +25,7 @@ public class ExcluirCandidato extends HttpServlet {
 		
 		String nome = "O candidato " + candidato.getNome() + " foi excluído!!!";
 		
-		response.sendRedirect("ListarCursos?mensagem="+nome);
+		response.sendRedirect("ListarCandidatos?mensagem="+nome);
 	}
 
 }

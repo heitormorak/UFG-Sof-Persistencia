@@ -39,7 +39,7 @@ public class CandidatoDAO {
 	}
 	public void excluir(int codigo) {
 		try {
-			String sql = "DELETE FROM curso WHERE codigo = ?";
+			String sql = "DELETE FROM candidato WHERE codigo = ?";
 			PreparedStatement instrucao = this.con.prepareStatement(sql);
 			instrucao.setInt(1, codigo);
 			instrucao.execute();
@@ -51,7 +51,7 @@ public class CandidatoDAO {
 	
 	public void atualizar(Candidato can) {
 		try {
-			String sql = "UPDATE curso "
+			String sql = "UPDATE candidato "
 					+ " SET codigo = ?, nome = ?, sexo = ? "
 					+ " SET data_nasc = ?, cargo_pretendido = ?, texto_curriculo = ? "
 					+ " WHERE codigo = ?";
@@ -73,7 +73,7 @@ public class CandidatoDAO {
 	
 	public Candidato obterCandidato(int codigo) {
 		try {
-			String sql = "SELECT * FROM curso WHERE codigo = ?";
+			String sql = "SELECT * FROM candidato WHERE codigo = ?";
 			PreparedStatement instrucao = this.con.prepareStatement(sql);
 			instrucao.setInt(1, codigo);
 

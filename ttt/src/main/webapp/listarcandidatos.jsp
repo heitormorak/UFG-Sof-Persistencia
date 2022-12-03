@@ -35,7 +35,7 @@
 				<td><%=can.getData_nasc()%></td>
 				<td><%=can.getCargo_pretendido()%></td>
 				<td><%=can.getTexto_curriculo()%></td>
-				<td> <a href="ExcluirCurso?numero=<%=can.getCodigo()%>"> X </a> </td>		
+				<td> <a href="ExcluirCandidato?codigo=<%=can.getCodigo()%>"> X </a> </td>		
 			</tr>
 		<% } %>
 	</table>

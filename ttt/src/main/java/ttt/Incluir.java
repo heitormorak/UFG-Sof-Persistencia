@@ -35,7 +35,7 @@ public class Incluir extends HttpServlet {
 		response.sendRedirect("ListarCandidatos");
 		
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }
